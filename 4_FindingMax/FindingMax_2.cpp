@@ -5,23 +5,24 @@ using namespace std;
 
 // STNode: Segment Tree Node
 struct STNode{
-    int start;
-    int end;
+    long long start;
+    long long end;
+    long long max_idx;
     long long max;
     STNode * left;
     STNode * right;
-    STNode(int s, int e):start(s),end(e),max(0),left(nullptr),right(nullptr){};
+    STNode(long long s, long long e):start(s),end(e),max_idx(0),max(0),left(nullptr),right(nullptr){};
 };
 
 
 class STree{
 public:
     STree(vector<long long> & arr);
-    STNode* createSTree(int start, int end, vector<long long> & arr);
-    void modify_node(int j, long long val);
-    long long modify(int j, long long val, STNode* root);
-    long long find_max_val(int j, int k);
-    long long find_max(int j, int k, STNode* root);
+    STNode* createSTree(long long start, long long end, vector<long long> & arr);
+    void modify_node(long long j, long long val);
+    long long modify(long long j, long long val, STNode* root);
+    long long find_max_val(long long j, long long k);
+    long long find_max(long long j, long long k, STNode* root);
     void print_root();
 
 private:
@@ -36,7 +37,7 @@ void STree::print_root(){
         cout << "max: " << root->max << " / start: " << root->start << " / end: " << root->end << endl;
 }
 
-STNode* STree::createSTree(int start, int end, vector<long long> & arr){
+STNode* STree::createSTree(long long start, long long end, vector<long long> & arr){
     STNode* root = new STNode(start, end);
 
     // 1) only one number in input array
@@ -44,23 +45,30 @@ STNode* STree::createSTree(int start, int end, vector<long long> & arr){
     // 2) it recursive to the leaf
     if (start == end) {
         root->max = arr[start];
+        root->max_idx = start;
         return root;
     }
 
     // split to left and right sub-tree
-    int mid = start + (end-start)/2;
+    long long mid = start + (end-start)/2;
     root->left = createSTree(start, mid, arr);
     root->right = createSTree(mid+1, end, arr);
-    root->max = max(root->left->max, root->right->max);
-
+    if (root->left->max > root->right->max){
+        root->max = root->left->max;
+        root->max_idx = root->left->max_idx;
+    } else {
+        root->max = root->right->max;
+        root->max_idx = root->right->max_idx;
+    }
+    
     return root;
 }
 
-void STree::modify_node(int j, long long val){
+void STree::modify_node(long long j, long long val){
     modify(j, val, root);
 }
 
-long long STree::modify(int j, long long val, STNode* root){
+long long STree::modify(long long j, long long val, STNode* root){
     // cout << "Start modify()" << endl;
     // cout << "root->start:" << root->start << " / root->end: " << root->end << endl;
 
@@ -72,29 +80,36 @@ long long STree::modify(int j, long long val, STNode* root){
     // reach the end
     if (j == root->start && j == root->end){
         root->max = val; // 到達葉子，一定要修改max值
+        // root->max_idx 到達葉子，max_idx 不變（一樣是自己）
         return root->max;
     }
 
     // search left or right tree
-    int mid = root->start + (root->end - root->start)/2;
+    long long mid = root->start + (root->end - root->start)/2;
     if (j <= mid){
         long long m = modify(j, val, root->left);
         root->max = (root->right->max > m) ? root->right->max : m;
+        if (root->right->max > m){
+            root->max_idx = root->right->max_idx;
+        }
     } else {
         // root->max = max(root->left->max, modify(j, val, root->right));
         long long m = modify(j, val, root->right);
         root->max = (root->left->max > m) ? root->left->max : m;
+        if (root->left->max > m){
+            root->max_idx = root->left->max_idx;
+        }
     }
     return root->max;
 }
 
 
-long long STree::find_max_val(int j, int k){
-    find_max(j, k, root);
+long long STree::find_max_val(long long j, long long k){
+    return find_max(j, k, root);
     // print_root();
 }
 
-long long STree::find_max(int j, int k, STNode* root){
+long long STree::find_max(long long j, long long k, STNode* root){
     // 排除違反規則的
     // cout << "Start find_max()" << endl;
     // cout << "root->start:" << root->start << " / root->end: " << root->end << endl;
@@ -109,14 +124,15 @@ long long STree::find_max(int j, int k, STNode* root){
         return 0;
     }
 
-    // reach the leaf, (X) 並不是只要在區間內！都可以直接回傳max
-    if (j == root->start && k == root->end){
+    // reach the leaf
+    // if (j == root->start && k == root->end && j == k){
+    if (j <= root->max_idx && k >= root->max_idx){
         // cout << "reach the leaf max:" << root->max << endl;
         return root->max;
     }
 
     // check the overlapping range(j, k) of left or right tree
-    int mid = root->start + (root->end - root->start)/2;
+    long long mid = root->start + (root->end - root->start)/2;
     if (k <= mid){
         // 全部在 left tree
         // cout << "go to left" << endl;
@@ -142,7 +158,7 @@ void print_vec(vector<long long> vec){
 
 
 int main(){
-    int n_num, m_queries;
+    long long n_num, m_queries;
 
     while (cin >> n_num >> m_queries){
 
@@ -152,7 +168,7 @@ int main(){
 
         vector<long long> all;
 
-        for (int i = 0 ; i < n_num; i++){
+        for (long long i = 0 ; i < n_num; i++){
             long long num;
             cin >> num;
             all.push_back(num);
@@ -164,8 +180,8 @@ int main(){
         STree tree(all);
         // tree.print_root();
 
-        for (int p = 0 ; p < m_queries; p++){
-            int i, j, k;
+        for (long long p = 0 ; p < m_queries; p++){
+            long long i, j, k;
             cin >> i >> j >> k;
             if (i == 1){
                 // modify num[j] to k.

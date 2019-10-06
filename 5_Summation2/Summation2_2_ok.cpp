@@ -14,15 +14,11 @@ template<typename T> void print_queue(T& q) {
     cout << endl;
 }
 
-
-
-// 用 BST 做 Sorting, 長出一個歪斜數（左傾）
-// 然後把所有node(除了leaf) 的 sum 加起來
-
-
+// 全部改成long long 就過了最後一個AC
+// 可是int不是已經cover過10^5了嗎？
 
 int main(){
-    int n;
+    long long n;
 
     while (cin >> n){
 
@@ -31,10 +27,10 @@ int main(){
         }
 
 
-        priority_queue<int, std::vector<int>, std::greater<int> > q;
+        priority_queue<long long, std::vector<long long>, std::greater<long long> > q;
  
-        for (int i = 0 ; i < n; i++){
-            int num;
+        for (long long i = 0 ; i < n; i++){
+            long long num;
             cin >> num;
             q.push(num);
         }
@@ -46,10 +42,10 @@ int main(){
 
         // print_queue(q);
         // cout << "queue size: " << q.size() << endl;
-        int cost = 0;
+        long long cost = 0;
         // select two from priority queue, sum up
         while(q.size() > 1){
-            int sum = 0;
+            long long sum = 0;
             // cout << "1st in queue: " << q.top() << endl;
             sum += q.top();
             q.pop();

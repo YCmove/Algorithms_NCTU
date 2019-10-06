@@ -3,6 +3,9 @@
 
 # Huffman(Hoffman) Tree Problem
 
+# Test Data
+- [Inverting Huffman](https://udebug.com/UVa/12676)
+
 # Related LeetCode
 - [1000. Minimum Cost to Merge Stones](https://leetcode.com/problems/minimum-cost-to-merge-stones/)
 - [Stone Game](https://aaronice.gitbooks.io/lintcode/dynamic_programming/stone_game.html)
