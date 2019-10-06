@@ -1,14 +1,24 @@
+#include <functional>
+#include <queue>
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-void print_vec(vector<int> vec){
-    for (auto it = vec.begin(); it != vec.end(); it++){
-        cout << *it << " ";
+
+template<typename T> void print_queue(T& q) {
+    while(!q.empty()) {
+        cout << q.top() << " ";
+        q.pop();
     }
     cout << endl;
 }
+
+
+
+// 用 BST 做 Sorting, 長出一個歪斜數（左傾）
+// 然後把所有node(除了leaf) 的 sum 加起來
+
 
 
 int main(){
@@ -20,15 +30,15 @@ int main(){
             return 0;
         }
 
-        vector<int> all;
-
+        priority_queue<int, std::vector<int>, std::greater<int> > q;
+ 
         for (int i = 0 ; i < n; i++){
             int num;
             cin >> num;
-            all.push_back(num);
+            q.push(num);
         }
 
-        print_vec(all);
+        print_queue(q);
 
     }
 
