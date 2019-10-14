@@ -10,7 +10,11 @@ using namespace std;
 // x從最低位數數來的第一個非零位
 #define lowbit(x) ((x)&(-(x)))
 typedef long long ll;
-const int max_n = 3*100000;
+
+// 最多 3 * 10^5 個 input point
+const int max_n = 3*100000 + 10;
+// const ll max_n = 600020;
+// store array in the stack
 ll c_count[max_n], test[max_n];
 
 template<typename T> void print_queue(T& q) {
@@ -63,7 +67,7 @@ int sum(ll x){
 
 int main(){
     ll n;
-
+    // cout << "here" << endl;
     while (cin >> n){
 
         if (n == 0){
@@ -74,7 +78,7 @@ int main(){
         // origin[0].x = 11;
         // origin[0].y = 22;
         // cout << "(" << origin[0].x << ", " << origin[0].y << ")"  << endl;
-
+        // return 0;
         Point p[max_n];
 
         unordered_map<ll, ll> umap;

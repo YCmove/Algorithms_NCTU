@@ -5,10 +5,11 @@
 #include <iostream>
 using namespace std;
  
-const int maxn = 32000+10;
+// const int maxn = 32000+10;
+const int maxn = 3*100000 + 10;
 
 // left shift = (32000+10) * 2^k
-int tree[maxn<<2], t, x, y, ans[maxn<<2];
+int tree[maxn<<2], t, x, y;
  
 // insert(0, maxn, 1);
 void insert(int l, int r, int i)
@@ -38,7 +39,6 @@ int main()
     while(~scanf("%d",&n))
     {
         memset(tree,0,sizeof(tree));
-        memset(ans,0,sizeof(ans));
         for(i = 0; i<n; i++)
         {
             scanf("%d%d",&x,&y);
@@ -47,13 +47,9 @@ int main()
 
             insert(0, maxn, 1);
 
-            // 每insert一個點，就會去他所在的layer更新(+1)
-            ans[t]++;
-            cout << "(" << x << ", " << y << ") - " << ", t:" << t << ", ans[t]: " << ans[t] << endl;
+            cout << "(" << x << ", " << y << ") - " << "t:" << t << endl;
             // cout << t << endl;
         }
-        // for(i = 0; i<n; i++)
-        //     printf("%d\n",ans[i]);
     }
  
     return 0;
