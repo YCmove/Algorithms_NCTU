@@ -1,6 +1,8 @@
 # Related Problem
 - [杭州電子科技大學 - Stars, 極相似, level算法不同](http://acm.hdu.edu.cn/showproblem.php?pid=1541)
-- [HDU 1541 Stars]()
+- [HDU 1541 Stars, o4_AC](https://blog.csdn.net/libin56842/article/details/14105099)
+- [知乎 - BIT樹狀數組](https://zhuanlan.zhihu.com/p/73346123)
+- [P2617 Dynamic Rankings](https://www.luogu.org/problem/P2617)
 - [dominance graph](https://codeforces.com/blog/entry/65140)
 - [codeforecs - Dominant Indices](https://codeforces.com/problemset/problem/1009/F)
 - [codeforecs - calculate dominance of points](https://codeforces.com/blog/entry/60745)
@@ -26,3 +28,6 @@
 - [二维偏序, xy座標長方形問題](https://zhuanlan.zhihu.com/p/55322598)
 
 # BITSET + 分塊查詢
+
+# 巨大Array記憶體問題
+- [Heap vs Stack](https://stackoverflow.com/questions/216259/is-there-a-max-array-length-limit-in-c)

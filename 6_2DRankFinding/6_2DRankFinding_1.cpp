@@ -96,10 +96,6 @@ int main(){
             p[i].y = y;
             p[i].origin_idx = i;
             cout << "Input (" << p[i].x << ", " << p[i].y << ")"  << endl;
-            // pvec[x].push_back(y);
-            // pvec[y].push_back(x);
-            // pvec[x][y] = 0;
-            // cout << "pvec[x]: " << pvec[x][y] << endl;
         }
 
 
@@ -112,13 +108,14 @@ int main(){
         // copy(p.begin(), p.end(), origin.begin());
 
         // return 0;
-        // print_arr(p, n+1);
-        // cout << "- start sort -" << endl;
+        cout << "- before sort -" << endl;
+        print_arr(p, n);
 
 	    sort(p, p+n, compare);
-        // cout << "print_arr after sort" << endl;
-        // print_arr(p, n);
+        
         cout << "- after sort -" << endl;
+        print_arr(p, n);
+        cout << "-- -- --" << endl;
 
         ll now;
         for(ll i = 0; i < n; i++){
