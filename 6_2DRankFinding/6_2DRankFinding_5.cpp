@@ -24,9 +24,10 @@ const ll max_n = UINT8_MAX;
 // store array in the stack
 
 // 建立Binary Indexed Tree的陣列
-ll BIT[max_n];
+// ll BIT[max_n];
 // ll NBIT[max_n];
-// ll* BIT = new ll[max_n]; // 遇到pow(2, 31)照樣炸裂... std::bad_alloc
+ll* PBIT = new ll[max_n]; // 遇到pow(2, 31)照樣炸裂... std::bad_alloc
+ll* NBIT = new ll[max_n]; // 遇到pow(2, 31)照樣炸裂... std::bad_alloc
 
 struct Point {
     ll x;
@@ -35,7 +36,7 @@ struct Point {
 };
 
  
-void insert(ll t, ll d)
+void insert(ll t, ll d, ll* BIT)
 {
     // 從root開始走, d為1, 代表traverse down經過的區間都 +1, 因為本題是紀錄出現次數
     // cout << "insert t: " << t << ", d: " << d << endl;
@@ -57,28 +58,30 @@ void insert(ll t, ll d)
         // cout << "===" << endl;
     }
 }
+
+// ll getNBIT(){
+//     return NBIT[0];
+// }
  
-ll getsum(ll t)
+ll getsum(ll t, ll* BIT)
 {
-    // cout << "getsum t: " << t << endl;
+    // cout << "\n\ngetsum t: " << t << endl;
     ll zs=0;
     while (t > 0)
     {
         // cout << "getsum while BIT[t]: " << BIT[t] << ", t: " << t << ", zs: " << zs << endl;
         zs+=BIT[t];
         t-=lowbit(t);
-        // cout << "getsum while end BIT[t]: " << BIT[t] << ", t: " << t << ", zs: " << zs << endl;
+        // cout << "getsum while end t: " << t << ", zs: " << zs << endl;
+        // cout << "===" << endl;
     }
     // cout << "getsum end zs: " << zs << endl;
-    // cout << "===" << endl;
     return zs;
 }
  
 
 
 template<class T> void print_arr(T& arr, ll n) {
-    // cout << (sizeof(arr)/sizeof(*arr)) << endl;
-    // for (auto it = arr.begin(); it != arr.end(); ++it){
     for (int i = 0; i < n; ++i){
         cout << "arr[" << i << "] - x:" << arr[i].x << ", y: " << arr[i].y << endl;
     }
@@ -131,9 +134,23 @@ int main(){
 
         for(ll i = 0; i < n; i++){
             // cout << "-- start insert --" << endl;
-            insert(p[i].x + 1, 1);
+            if (p[i].x >= 0){
+                insert(p[i].x + 1, 1, PBIT);
+                q = getsum(p[i].x + 1, PBIT) - 1;
+                // cout << "positive NBIT[1]: " << NBIT[1] << endl;
+                // cout << "p[0].x: " << p[0].x << endl;
+                // cout << "positive sum of NBIT: " << getsum(p[i].x + 1 + INT8_MAX, NBIT) - 1 << endl;
+                q += getsum(p[i].x + 1 + INT8_MAX, NBIT);
+            } else {
+                insert(p[i].x + 1 + INT8_MAX, 1, NBIT);
+                q = getsum(p[i].x + 1 + INT8_MAX, NBIT) - 1;
+                // cout << "negtive sum of NBIT: " << getsum(p[i].x + 1 + INT8_MAX, NBIT) - 1 << endl;
+                // cout << "negtive NBIT[1]: " << NBIT[1] << endl;
+
+            }
+            // insert(p[i].x + 1, 1);
             // cout << "-- start getsum --" << endl;
-            q = getsum(p[i].x + 1) - 1;
+            // q = getsum(p[i].x + 1) - 1;
             // cout << "-- finish getsum --" << endl;
             // cout << "(" << p[i].x << ", " << p[i].y << ") - " << "q:" << q << endl;
 

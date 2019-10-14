@@ -1,2 +1,34 @@
-1
+
+
+getsum t: 127
+getsum while BIT[t]: 1, t: 127, zs: 0
+getsum while end t: 126, zs: 1
+===
+getsum while BIT[t]: 0, t: 126, zs: 1
+getsum while end t: 124, zs: 1
+===
+getsum while BIT[t]: 0, t: 124, zs: 1
+getsum while end t: 120, zs: 1
+===
+getsum while BIT[t]: 0, t: 120, zs: 1
+getsum while end t: 112, zs: 1
+===
+getsum while BIT[t]: 0, t: 112, zs: 1
+getsum while end t: 96, zs: 1
+===
+getsum while BIT[t]: 0, t: 96, zs: 1
+getsum while end t: 64, zs: 1
+===
+getsum while BIT[t]: 0, t: 64, zs: 1
+getsum while end t: 0, zs: 1
+===
+getsum end zs: 1
+
+
+getsum t: 1
+getsum while BIT[t]: 1, t: 1, zs: 0
+getsum while end t: 0, zs: 1
+===
+getsum end zs: 1
+0
 0
