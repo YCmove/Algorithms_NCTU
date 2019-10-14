@@ -7,11 +7,12 @@ using namespace std;
 const int maxn=100000+10;
 int n, c[maxn], ans[maxn];
 
+
 struct Stars{
 	int x, y;
 } a[maxn];
 
-bool cmp(Stars a,Stars b){
+bool cmp(Stars a, Stars b){
 	if(a.x != b.x) return a.x < b.x;
 	return a.y < b.y;
 }
@@ -58,14 +59,14 @@ int main()
 	int now;
 	for(int i=1;i<=n;i++){
 		now = sum(a[i].y + 1);
-		// ans[now]++;
-        printf("(%d, %d) - ", a[i].x, a[i].y);
-        printf("%d\n", now);
+		ans[now]++;
+        // printf("(%d, %d) - ", a[i].x, a[i].y);
+        // printf("%d\n", now);
 		add(a[i].y + 1, 1);
 	}
 
-	// for(int i=0;i<n;i++) 
-	// 	printf("%d\n",ans[i]);
+	for(int i=0;i<n;i++) 
+		printf("%d\n",ans[i]);
 
 	return 0;
 }
