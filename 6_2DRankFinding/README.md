@@ -1,5 +1,6 @@
 # Related Problem
 - [杭州電子科技大學 - Stars, 極相似, level算法不同](http://acm.hdu.edu.cn/showproblem.php?pid=1541)
+- [HDU 1541 Stars]()
 - [dominance graph](https://codeforces.com/blog/entry/65140)
 - [codeforecs - Dominant Indices](https://codeforces.com/problemset/problem/1009/F)
 - [codeforecs - calculate dominance of points](https://codeforces.com/blog/entry/60745)

@@ -6,20 +6,11 @@
 using namespace std;
 
 #define _ ios_base::sync_with_stdio(0);cin.tie(0);
-
-// x從最低位數數來的第一個非零位
 #define lowbit(x) ((x)&(-(x)))
 typedef long long ll;
 const int max_n = 3*100000;
 ll c_count[max_n], test[max_n];
 
-template<typename T> void print_queue(T& q) {
-    while(!q.empty()) {
-        cout << q.top() << " ";
-        q.pop();
-    }
-    cout << endl;
-}
 
 struct Point {
     ll x;
@@ -79,10 +70,6 @@ int main(){
 
         unordered_map<ll, ll> umap;
 
-        // vector<ll, ll> idxvec;
-        // idxvec.resize(max_n);
-        // vector<vector<ll> > pvec;
- 
         for (ll i = 0 ; i < n; ++i){
             ll x, y;
             cin >> x >> y;
@@ -91,11 +78,7 @@ int main(){
             p[i].x = x;
             p[i].y = y;
             p[i].origin_idx = i;
-            cout << "Input (" << p[i].x << ", " << p[i].y << ")"  << endl;
-            // pvec[x].push_back(y);
-            // pvec[y].push_back(x);
-            // pvec[x][y] = 0;
-            // cout << "pvec[x]: " << pvec[x][y] << endl;
+            cout << "(" << p[i].x << ", " << p[i].y << ")"  << endl;
         }
 
 
@@ -109,29 +92,30 @@ int main(){
 
         // return 0;
         // print_arr(p, n+1);
-        // cout << "- start sort -" << endl;
+        // cout << "---------" << endl;
 
 	    sort(p, p+n, compare);
         // cout << "print_arr after sort" << endl;
         // print_arr(p, n);
-        cout << "- after sort -" << endl;
 
         ll now;
         for(ll i = 0; i < n; i++){
             now = sum(p[i].y + 1);
-            // test[now]++;
+            test[now]++;
+            // pvec[p[i].x][p[i].y] = now;
             umap[p[i].origin_idx] = now;
             // cout << "(" << p[i].x << ", " << p[i].y << "): " << now << endl;
-            cout << "now: " << now << endl;
-            cout << "- start add -" << endl;
+            // cout << now << endl;
+            // printf("(%d, %d) - ", p[i].x, p[i].y);
+            // printf("%d\n", now);
             add(p[i].y + 1, 1);
-            cout << "- after add -" << endl;
         }
 
         for(ll i = 0; i < n; i++){
-            cout << umap[i] << endl;
-            // cout << test[i] << endl;
+            // cout << umap[i] << endl;
+            cout << test[i] << endl;
             // cout << "(" << origin[i].x << ", " << origin[i].y << "): " ;
+            // cout << pvec[origin[i].x][origin[i].y] << endl;
         }
 
 
