@@ -31,3 +31,15 @@
 
 # 巨大Array記憶體問題
 - [Heap vs Stack](https://stackoverflow.com/questions/216259/is-there-a-max-array-length-limit-in-c)
+
+# Point (127, 0) overflow
+- 2^7 = 128
+- 使用 `#include <climits>`
+```
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Aborted (core dumped)
+```
+
+
+

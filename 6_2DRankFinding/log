@@ -1,28 +1,28 @@
-
-
-getsum t: 127
-getsum while BIT[t]: 1, t: 127, zs: 0
-getsum while end t: 126, zs: 1
+insert t: 1, d: 1
+insert while BIT[t]: 0, t: 1
+insert while end t: 2
 ===
-getsum while BIT[t]: 0, t: 126, zs: 1
-getsum while end t: 124, zs: 1
+insert while BIT[t]: 0, t: 2
+insert while end t: 4
 ===
-getsum while BIT[t]: 0, t: 124, zs: 1
-getsum while end t: 120, zs: 1
+insert while BIT[t]: 0, t: 4
+insert while end t: 8
 ===
-getsum while BIT[t]: 0, t: 120, zs: 1
-getsum while end t: 112, zs: 1
+insert while BIT[t]: 0, t: 8
+insert while end t: 16
 ===
-getsum while BIT[t]: 0, t: 112, zs: 1
-getsum while end t: 96, zs: 1
+insert while BIT[t]: 0, t: 16
+insert while end t: 32
 ===
-getsum while BIT[t]: 0, t: 96, zs: 1
-getsum while end t: 64, zs: 1
+insert while BIT[t]: 0, t: 32
+insert while end t: 64
 ===
-getsum while BIT[t]: 0, t: 64, zs: 1
-getsum while end t: 0, zs: 1
+insert while BIT[t]: 0, t: 64
+insert while end t: 128
 ===
-getsum end zs: 1
+insert while BIT[t]: 0, t: 128
+insert while end t: 256
+===
 
 
 getsum t: 1
@@ -30,5 +30,88 @@ getsum while BIT[t]: 1, t: 1, zs: 0
 getsum while end t: 0, zs: 1
 ===
 getsum end zs: 1
-0
+positive sum of NBIT: 
+
+getsum t: 128
+getsum while BIT[t]: 0, t: 128, zs: 0
+getsum while end t: 0, zs: 0
+===
+getsum end zs: 0
+-1
+
+
+getsum t: 128
+getsum while BIT[t]: 0, t: 128, zs: 0
+getsum while end t: 0, zs: 0
+===
+getsum end zs: 0
+insert t: 128, d: 1
+insert while BIT[t]: 1, t: 128
+insert while end t: 256
+===
+
+
+getsum t: 128
+getsum while BIT[t]: 2, t: 128, zs: 0
+getsum while end t: 0, zs: 2
+===
+getsum end zs: 2
+positive sum of NBIT: 
+
+getsum t: 255
+getsum while BIT[t]: 4113, t: 255, zs: 0
+getsum while end t: 254, zs: 4113
+===
+getsum while BIT[t]: 0, t: 254, zs: 4113
+getsum while end t: 252, zs: 4113
+===
+getsum while BIT[t]: 0, t: 252, zs: 4113
+getsum while end t: 248, zs: 4113
+===
+getsum while BIT[t]: 0, t: 248, zs: 4113
+getsum while end t: 240, zs: 4113
+===
+getsum while BIT[t]: 0, t: 240, zs: 4113
+getsum while end t: 224, zs: 4113
+===
+getsum while BIT[t]: 0, t: 224, zs: 4113
+getsum while end t: 192, zs: 4113
+===
+getsum while BIT[t]: 0, t: 192, zs: 4113
+getsum while end t: 128, zs: 4113
+===
+getsum while BIT[t]: 0, t: 128, zs: 4113
+getsum while end t: 0, zs: 4113
+===
+getsum end zs: 4113
+4112
+
+
+getsum t: 255
+getsum while BIT[t]: 4113, t: 255, zs: 0
+getsum while end t: 254, zs: 4113
+===
+getsum while BIT[t]: 0, t: 254, zs: 4113
+getsum while end t: 252, zs: 4113
+===
+getsum while BIT[t]: 0, t: 252, zs: 4113
+getsum while end t: 248, zs: 4113
+===
+getsum while BIT[t]: 0, t: 248, zs: 4113
+getsum while end t: 240, zs: 4113
+===
+getsum while BIT[t]: 0, t: 240, zs: 4113
+getsum while end t: 224, zs: 4113
+===
+getsum while BIT[t]: 0, t: 224, zs: 4113
+getsum while end t: 192, zs: 4113
+===
+getsum while BIT[t]: 0, t: 192, zs: 4113
+getsum while end t: 128, zs: 4113
+===
+getsum while BIT[t]: 0, t: 128, zs: 4113
+getsum while end t: 0, zs: 4113
+===
+getsum end zs: 4113
+4114
 0
