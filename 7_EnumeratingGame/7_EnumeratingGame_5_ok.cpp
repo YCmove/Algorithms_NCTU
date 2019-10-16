@@ -10,36 +10,38 @@ typedef long long ll;
 // set root as global
 ll a, b;
 
-void clear(queue<int>& q) {
-    queue<int> empty;
-    swap(empty, q);
+void clear(stack<int>& sta) {
+    stack<int> empty;
+    swap(empty, sta);
 };
 
 
 
 
-ll binaryqueue_to_decimal(queue<int> &q){
-    ll decimalNumber = 0; 
+ll binarystack_to_decimal(stack<int> &sta){
+    ll decimalNumber = 1; 
     // ll base = 2; 
     int n = 0;
-    // cout << "q.front: " << q.front() << endl;
-    // cout << "q.size: " << q.size() << endl;
+    // cout << "sta.back: " << sta.back() << endl;
+    // cout << "sta.size: " << sta.size() << endl;
 
-    while (!q.empty()){
-        // cout << "q.front: " << q.front() << endl;
-        if (q.front() == 1){
+    while (!sta.empty()){
+        // cout << "sta.top: " << sta.top() << endl;
+        if (sta.top() == 1){
+            // 往右走
             // decimalNumber += pow(base, n);
-            decimalNumber += 2 * decimalNumber + 1;
+            decimalNumber = 2 * decimalNumber + 1;
 
         } else {
-            decimalNumber += 2 * decimalNumber;
+            // 往左走
+            decimalNumber = 2 * decimalNumber;
 
         }
-        decimalNumber = decimalNumber % 524287;
         n++;
-        q.pop();
+        sta.pop();
+        decimalNumber = decimalNumber % 524287;
     }
-    clear(q);
+    clear(sta);
     // cout << "decimalNumber: " << decimalNumber << endl;
     return decimalNumber;
 }
@@ -62,7 +64,7 @@ int main(){
  
         for (int i = 0 ; i < m; i++){
             ll l, r;
-            queue<int> binaryqueue;
+            stack<int> binarystack;
             // Root Node: (a,b)
             cin >> a >> b >> l >> r;
             // cout << "--------a: " << a << ", b: " << b <<"-------" << endl;
@@ -84,23 +86,23 @@ int main(){
                     // return 2 * recur(3-2, 2) + 1; 2*2+1
                     // cout << "l > r - " << "l: " << l << ", r: " << r << endl;
                     l = l-r;
-                    binaryqueue.push(1);
+                    binarystack.push(1);
 
                 } else if(l < r) {
                     // left child 2x
                     // cout << "l < r - " << "l: " << l << ", r: " << r << endl;
                     r = r-l;
-                    binaryqueue.push(0);
+                    binarystack.push(0);
                 } else {
                     // cout << "never reach here. " << "l: " << l << ", r: " << r << endl;
-                    clear(binaryqueue);
+                    clear(binarystack);
                     flag = true;
                     // break;
                 }
             }
 
-            if (binaryqueue.empty()){
-                // cout << "binaryqueue.empty(): " << -1 << endl;
+            if (binarystack.empty()){
+                // cout << "binarystack.empty(): " << -1 << endl;
                 cout << -1 << endl;
                 continue;
             }
@@ -111,8 +113,8 @@ int main(){
                 continue;
             }
 
-            binaryqueue.push(1);
-            ll ans = binaryqueue_to_decimal(binaryqueue);
+            // binarystack.push(1); // 第一個root不重要
+            ll ans = binarystack_to_decimal(binarystack);
             // cout << "origin ans: " << ans << endl;
             cout << ans % 524287 << endl;
 
