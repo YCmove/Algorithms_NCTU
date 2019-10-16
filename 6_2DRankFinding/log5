@@ -1,0 +1,157 @@
+- before sort -
+arr[0] - x:4, y: 1
+arr[1] - x:2, y: 6
+
+- after sort -
+arr[0] - x:4, y: 1
+arr[1] - x:2, y: 6
+
+-- -- --
+
+
+insert t: 5, d: 1
+insert while BIT[t]: 0, t: 5
+insert while end BIT[t]: 1, t: 5
+===
+insert while BIT[t]: 0, t: 6
+insert while end BIT[t]: 1, t: 6
+===
+insert while BIT[t]: 0, t: 8
+insert while end BIT[t]: 1, t: 8
+===
+insert while BIT[t]: 0, t: 16
+insert while end BIT[t]: 1, t: 16
+===
+insert while BIT[t]: 0, t: 32
+insert while end BIT[t]: 1, t: 32
+===
+insert while BIT[t]: 0, t: 64
+insert while end BIT[t]: 1, t: 64
+===
+insert while BIT[t]: 0, t: 128
+insert while end BIT[t]: 1, t: 128
+===
+insert while BIT[t]: 0, t: 256
+insert while end BIT[t]: 1, t: 256
+===
+insert while BIT[t]: 0, t: 512
+insert while end BIT[t]: 1, t: 512
+===
+insert while BIT[t]: 0, t: 1024
+insert while end BIT[t]: 1, t: 1024
+===
+insert while BIT[t]: 0, t: 2048
+insert while end BIT[t]: 1, t: 2048
+===
+insert while BIT[t]: 0, t: 4096
+insert while end BIT[t]: 1, t: 4096
+===
+insert while BIT[t]: 0, t: 8192
+insert while end BIT[t]: 1, t: 8192
+===
+insert while BIT[t]: 0, t: 16384
+insert while end BIT[t]: 1, t: 16384
+===
+insert while BIT[t]: 0, t: 32768
+insert while end BIT[t]: 1, t: 32768
+===
+insert while BIT[t]: 0, t: 65536
+insert while end BIT[t]: 1, t: 65536
+===
+insert while BIT[t]: 0, t: 131072
+insert while end BIT[t]: 1, t: 131072
+===
+insert while BIT[t]: 0, t: 262144
+insert while end BIT[t]: 1, t: 262144
+===
+
+
+getsum t: 5
+getsum while BIT[t]: 1, t: 5, fsum: 0
+getsum while end t: 4, fsum: 1
+getsum while BIT[t]: 0, t: 4, fsum: 1
+getsum while end t: 0, fsum: 1
+getsum end fsum: 1
+
+
+getsum t: 132
+getsum while BIT[t]: 0, t: 132, fsum: 0
+getsum while end t: 128, fsum: 0
+getsum while BIT[t]: 0, t: 128, fsum: 0
+getsum while end t: 0, fsum: 0
+getsum end fsum: 0
+
+
+insert t: 3, d: 1
+insert while BIT[t]: 0, t: 3
+insert while end BIT[t]: 1, t: 3
+===
+insert while BIT[t]: 0, t: 4
+insert while end BIT[t]: 1, t: 4
+===
+insert while BIT[t]: 1, t: 8
+insert while end BIT[t]: 2, t: 8
+===
+insert while BIT[t]: 1, t: 16
+insert while end BIT[t]: 2, t: 16
+===
+insert while BIT[t]: 1, t: 32
+insert while end BIT[t]: 2, t: 32
+===
+insert while BIT[t]: 1, t: 64
+insert while end BIT[t]: 2, t: 64
+===
+insert while BIT[t]: 1, t: 128
+insert while end BIT[t]: 2, t: 128
+===
+insert while BIT[t]: 1, t: 256
+insert while end BIT[t]: 2, t: 256
+===
+insert while BIT[t]: 1, t: 512
+insert while end BIT[t]: 2, t: 512
+===
+insert while BIT[t]: 1, t: 1024
+insert while end BIT[t]: 2, t: 1024
+===
+insert while BIT[t]: 1, t: 2048
+insert while end BIT[t]: 2, t: 2048
+===
+insert while BIT[t]: 1, t: 4096
+insert while end BIT[t]: 2, t: 4096
+===
+insert while BIT[t]: 1, t: 8192
+insert while end BIT[t]: 2, t: 8192
+===
+insert while BIT[t]: 1, t: 16384
+insert while end BIT[t]: 2, t: 16384
+===
+insert while BIT[t]: 1, t: 32768
+insert while end BIT[t]: 2, t: 32768
+===
+insert while BIT[t]: 1, t: 65536
+insert while end BIT[t]: 2, t: 65536
+===
+insert while BIT[t]: 1, t: 131072
+insert while end BIT[t]: 2, t: 131072
+===
+insert while BIT[t]: 1, t: 262144
+insert while end BIT[t]: 2, t: 262144
+===
+
+
+getsum t: 3
+getsum while BIT[t]: 1, t: 3, fsum: 0
+getsum while end t: 2, fsum: 1
+getsum while BIT[t]: 0, t: 2, fsum: 1
+getsum while end t: 0, fsum: 1
+getsum end fsum: 1
+
+
+getsum t: 130
+getsum while BIT[t]: 0, t: 130, fsum: 0
+getsum while end t: 128, fsum: 0
+getsum while BIT[t]: 0, t: 128, fsum: 0
+getsum while end t: 0, fsum: 0
+getsum end fsum: 0
+0
+0

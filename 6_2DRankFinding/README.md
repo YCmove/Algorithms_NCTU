@@ -1,6 +1,17 @@
+# Final AC
+- Deal with 2^31, use index compression
+- BIT對x, y軸做兩次sort即可
+- Time 784
+
+
 # Related Problem
 - [杭州電子科技大學 - Stars, 極相似, level算法不同](http://acm.hdu.edu.cn/showproblem.php?pid=1541)
 - [HDU 1541 Stars, o4_AC](https://blog.csdn.net/libin56842/article/details/14105099)
+- [poj 3264 - Balanced Lineup](https://blog.csdn.net/hurmishine/article/details/54176068)
+- [BIT樹狀數組 詳細解說](https://www.mayuan.site/post/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/)
+- [树状数组求逆序对原理, Inversion Pair !!](https://www.jianshu.com/p/8a4081f0ec20)
+  - 假如现在有一些数：1234 98756 123456 99999 56782,由于1234是第一小的数，所以num[1]=1;依此，有num[5]=2,num[2]=3,num[4]=4,num[3]=5;这样转化后并不影响原来数据的相对大小关系，何乐而不为呢！！！
+  - 树状数组+去重离散化
 - [知乎 - BIT樹狀數組](https://zhuanlan.zhihu.com/p/73346123)
 - [P2617 Dynamic Rankings](https://www.luogu.org/problem/P2617)
 - [dominance graph](https://codeforces.com/blog/entry/65140)
@@ -41,5 +52,8 @@ terminate called after throwing an instance of 'std::bad_alloc'
 Aborted (core dumped)
 ```
 
+# ST表
+- [ACM gitbook](https://hrbust-acm-team.gitbooks.io/acm-book/content/data_structure/ds_part6.html)
+- 可以維護區間最大or最小值
 
 

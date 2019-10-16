@@ -1,0 +1,68 @@
+- before sort -
+arr[0] - x:4, y: 1
+arr[1] - x:2, y: 6
+
+- after sort -
+arr[0] - x:4, y: 1
+arr[1] - x:2, y: 6
+
+-- -- --
+
+
+insert idx: 1, d: 1
+insert while BIT[idx].counts: 0, idx: 1
+insert while end BIT[idx].counts: 1, idx: 1
+===
+insert while BIT[idx].counts: 0, idx: 2
+insert while end BIT[idx].counts: 1, idx: 2
+===
+insert while BIT[idx].counts: 0, idx: 4
+insert while end BIT[idx].counts: 1, idx: 4
+===
+insert while BIT[idx].counts: 0, idx: 8
+insert while end BIT[idx].counts: 1, idx: 8
+===
+insert while BIT[idx].counts: 0, idx: 16
+insert while end BIT[idx].counts: 1, idx: 16
+===
+
+
+getsum idx: 1
+getsum while BIT[idx].counts: 1, idx: 1, fsum: 0
+getsum while end idx: 0, fsum: 1
+getsum end fsum: 1
+
+
+getsum idx: 1
+getsum while BIT[idx].counts: 0, idx: 1, fsum: 0
+getsum while end idx: 0, fsum: 0
+getsum end fsum: 0
+
+
+insert idx: 2, d: 1
+insert while BIT[idx].counts: 1, idx: 2
+insert while end BIT[idx].counts: 2, idx: 2
+===
+insert while BIT[idx].counts: 1, idx: 4
+insert while end BIT[idx].counts: 2, idx: 4
+===
+insert while BIT[idx].counts: 1, idx: 8
+insert while end BIT[idx].counts: 2, idx: 8
+===
+insert while BIT[idx].counts: 1, idx: 16
+insert while end BIT[idx].counts: 2, idx: 16
+===
+
+
+getsum idx: 2
+getsum while BIT[idx].counts: 2, idx: 2, fsum: 0
+getsum while end idx: 0, fsum: 2
+getsum end fsum: 2
+
+
+getsum idx: 2
+getsum while BIT[idx].counts: 0, idx: 2, fsum: 0
+getsum while end idx: 0, fsum: 0
+getsum end fsum: 0
+0
+1

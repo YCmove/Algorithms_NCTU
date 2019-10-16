@@ -15,6 +15,7 @@ typedef long long ll;
 
 // 最多 3 * 10^5 個 input point
 const int max_n = 3*100000 + 10;
+// const int max_n = sqrt(pow(2, 31));
 
 // 2^31 - 1是 帶正負號的 long int 的上限
 // const ll max_n = pow(2, 31);
@@ -40,12 +41,12 @@ struct Point {
 void insert(ll t, ll d, ll* BIT)
 {
     // 從root開始走, d為1, 代表traverse down經過的區間都 +1, 因為本題是紀錄出現次數
-    // cout << "insert t: " << t << ", d: " << d << endl;
+    cout << "\n\ninsert t: " << t << ", d: " << d << endl;
 
     // t 不超過 max_n, t要一路走到leaf
     while (t <= max_n)
     {
-        // cout << "insert while BIT[t]: " << BIT[t] << ", t: " << t << endl;
+        cout << "insert while BIT[t]: " << BIT[t] << ", t: " << t << endl;
 
         // t 在 BIT 上的位置的值 + 1
         // BIT[t]為陣列中相對應範圍的元素合
@@ -54,10 +55,10 @@ void insert(ll t, ll d, ll* BIT)
         // lowbit 為 t 的下界, 一路走到底(leaf)
         // 是一路往Left Tree 走
         
+        cout << "insert while end BIT[t]: " << BIT[t] << ", t: " << t << endl;
         t += lowbit(t);
 
-        // cout << "insert while end t: " << t << endl;
-        // cout << "===" << endl;
+        cout << "===" << endl;
     }
 }
 
@@ -67,18 +68,18 @@ void insert(ll t, ll d, ll* BIT)
  
 ll getsum(ll t, ll* BIT)
 {
-    // cout << "\n\ngetsum t: " << t << endl;
-    ll zs=0;
+    cout << "\n\ngetsum t: " << t << endl;
+    ll fsum=0;
     while (t > 0)
     {
-        // cout << "getsum while BIT[t]: " << BIT[t] << ", t: " << t << ", zs: " << zs << endl;
-        zs+=BIT[t];
+        cout << "getsum while BIT[t]: " << BIT[t] << ", t: " << t << ", fsum: " << fsum << endl;
+        fsum+=BIT[t];
         t-=lowbit(t);
-        // cout << "getsum while end t: " << t << ", zs: " << zs << endl;
+        cout << "getsum while end t: " << t << ", fsum: " << fsum << endl;
         // cout << "===" << endl;
     }
-    // cout << "getsum end zs: " << zs << endl;
-    return zs;
+    cout << "getsum end fsum: " << fsum << endl;
+    return fsum;
 }
  
 
@@ -124,14 +125,14 @@ int main(){
             // cout << "Input (" << p[i].x << ", " << p[i].y << ")"  << endl;
         }
 
-        // cout << "- before sort -" << endl;
-        // print_arr(p, n);
+        cout << "- before sort -" << endl;
+        print_arr(p, n);
 
 	    sort(p, p+n, compare_y);
         
-        // cout << "- after sort -" << endl;
-        // print_arr(p, n);
-        // cout << "-- -- --" << endl;
+        cout << "- after sort -" << endl;
+        print_arr(p, n);
+        cout << "-- -- --" << endl;
         
         // cout << "max_n: " << max_n << endl; // UINT8_MAX = 255
         // return 0;
