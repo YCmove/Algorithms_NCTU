@@ -27,17 +27,28 @@ int main(){
 
     while (cin >> n){
 
-        if (n == 0){
-            return 0;
-        }
-
+        // if (n < 4){
+        //     cout << "0" << endl;
+        //     return 0;
+        // }
         ll arr[n];
 
+        bool all_zero = true;
         for (int i = 0 ; i < n; i++){
             ll a;
             cin >> a;
+
+            if (a != 0){
+                all_zero = false;
+            }
+
             arr[i] = a;
 
+        }
+
+        if (all_zero){
+            cout << "1" << endl;
+            return 0;
         }
         // cout << "----- before sort -----\n";
         // print_arr(arr, n);
@@ -45,28 +56,128 @@ int main(){
         // cout << "----- after sort -----\n";
         // print_arr(arr, n);
 
+
+
         // invalid sequence
-        if ((arr[0] >= 0) && (arr[n-1] <= 0)){
+        if ((arr[0] >= 0) || (arr[n-1] <= 0)){
             cout << "0" << endl;
             return 0;
         }
 
-        // positive array
-        vector<ll> pos;
-        // negtive array
-        vector<ll> neg;
+        // positive array and negtive array
+        // vector<ll> pos;
+        // vector<ll> neg;
 
-        for (int i = 0; i < n; ++i){
-            if (arr[i] >= 0){
-                pos.push_back(arr[i]);
-            } else {
-                neg.push_back(arr[i]);
+        // int i = 0;
+        // while (arr[i] < 0 && i < n - 1) {
+        //     neg.push_back(arr[i]);
+        //     i++;
+        // }
+
+        // int positive_idx;
+        // positive_idx = i;
+
+        // while (arr[i] >= 0 && i < n) {
+        //     pos.push_back(arr[i]);
+        //     i++;
+        // }
+
+        // print_vec(neg);
+        // print_vec(pos);
+        // cout << "positive_idx: " << positive_idx << endl;
+
+
+        unordered_map<ll, pair<ll, ll> > hash_sum;
+
+        // sum of negative sequence
+        // for (int i = 0; i < n - positive_idx - 1; ++i) {
+        //     for (int j = i + 1; j < positive_idx; ++j) {
+        //         hash_sum[pos[i] + pos[j]] = {i, j}; // pair of index
+        //     }
+        // }
+
+        // sum of positive sequence
+        // for (int i = 0; i < n - positive_idx; ++i) {
+        //     for (int j = i + 1; j <= n - positive_idx; ++j) {
+        //         hash_sum[pos[i] + pos[j]] = {i, j}; // pair of index
+        //         cout << "pos[i]: " << pos[i] << ", pos[j]: " << pos[j] << endl;
+        //     }
+        // }
+        cout << "===== hash_sum =====" << endl;
+        for (int i = 0; i < n-1; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                hash_sum[arr[i] + arr[j]] = {i, j}; // pair of index
+                cout << "arr[i]: " << arr[i] << ", arr[j]: " << arr[j] << endl;
             }
         }
+        // sum of negative sequence
+        // for (int i = 0; i < n - positive_idx - 1; ++i) {
+        //     for (int j = i + 1; j < positive_idx; ++j) {
+        //         cout << "neg[i]: " << neg[i] << ", neg[j]: " << neg[j] << endl;
+        //         auto h = hash_sum.find(abs(neg[i] + neg[j]));
+        //         if (h != hash_sum.end()){
+        //             cout << "1" << endl;
+        //         } else {
+        //             cout << "0" << endl;
 
-        print_vec(neg);
-        print_vec(pos);
+        //         };
+        //     }
+        // }
+        cout << "===== hash_sum.find =====" << endl;
+        for (int i = 0; i < n - 1; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                cout << "arr[i]: " << arr[i] << ", arr[j]: " << arr[j] << endl;
+                ll sum = arr[i] + arr[j];
 
+                // 會 hash 錯？
+                unordered_map<ll, pair<ll, ll> >::iterator h;
+                if (sum == 0){
+                    h = hash_sum.find(sum);
+                } else {
+                    h = hash_sum.find(-sum);
+                }
+                // hash_sum != sum 兩個不能同為 正號 或負號
+                if (h != hash_sum.end()){
+                    pair<ll, ll> idx_pair = hash_sum[sum];
+                    if (idx_pair.first != i && idx_pair.first != j && idx_pair.second != i && idx_pair.second != j){
+                        cout << "1" << endl;
+
+                        cout << arr[i] << ", " << arr[j] << ", "
+                         << arr[idx_pair.first] << ", "
+                         << arr[idx_pair.second] << endl; 
+                        return 0;
+                    }
+
+                } 
+                // else {
+                //     cout << "0" << endl;
+                // };
+            }
+        }
+        cout << "0" << endl;
+
+
+        // Sum of all pairs
+        // ll * sum_neg[positive_idx + 1];
+        // ll * sum_pos[n - positive_idx - 1];
+
+        // 計算subset sum, how?
+        // select 1, 2, 3 out of negative sequence
+        // select 3, 2, 1 out of positive sequence
+
+        // Situation 1
+        // select 1 out of negative sequence
+        // select 3 out of positive sequence
+
+
+        // Situation 2
+        // select 2 out of negative sequence
+        // select 2 out of positive sequence
+
+
+        // Situation 3
+        // select 3 out of negative sequence
+        // select 1 out of positive sequence
 
 
 
