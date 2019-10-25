@@ -150,7 +150,32 @@ int main(){
             }
         }
         cout << "0" << endl;
-        return 0;
+
+
+        // Sum of all pairs
+        // ll * sum_neg[positive_idx + 1];
+        // ll * sum_pos[n - positive_idx - 1];
+
+        // 計算subset sum, how?
+        // select 1, 2, 3 out of negative sequence
+        // select 3, 2, 1 out of positive sequence
+
+        // Situation 1
+        // select 1 out of negative sequence
+        // select 3 out of positive sequence
+
+
+        // Situation 2
+        // select 2 out of negative sequence
+        // select 2 out of positive sequence
+
+
+        // Situation 3
+        // select 3 out of negative sequence
+        // select 1 out of positive sequence
+
+
+
     }
     return 0;
 }
