@@ -1,3 +1,8 @@
+# Final AC
+- pow(2, xx) floating point 會炸裂, 改用layer x = 2x and 2x+1的算法
+- 因應上面改動，把stack改成queue
+
+
 # Related Problem
 - [A Rational Sequence （递归，满二叉树）](http://ddrv.cn/a/42051)
 - [ICPC - A Rational Sequence](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=5385)
