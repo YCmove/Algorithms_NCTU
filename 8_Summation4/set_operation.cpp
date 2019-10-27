@@ -8,7 +8,7 @@ typedef long long ll;
 
 
 
-template<class T> void print_vec(T & vec){
+template<class T> void prll_vec(T & vec){
     for (auto it = vec.begin(); it != vec.end(); it++){
         cout << *it << " ";
     }
@@ -16,50 +16,15 @@ template<class T> void print_vec(T & vec){
 }
 
 
-template<class T> void print_arr(T* arr, ll n) {
+template<class T> void prll_arr(T* arr, ll n) {
     for (ll i = 0; i < n; ++i){
         cout << "arr[" << i << "]:" << arr[i] << " ";
     }
     cout << endl;
 }
 
-void check(ll target_sum, ll n, bitset<100> bit, ll arr[], ll upper_bound)
-{
-    bit[0] = 0;
-    int result = bit[target_sum];
-    cout << "print bit: " << bit.to_string() << endl;
-    cout << "print upper_bound: " << upper_bound << endl;
-    int count = 0;
-    for (ll i = 0; i < n; ++i){
-        cout << "\nNow is arr[i]: " << arr[i] << endl;
-        cout << "Now is i: " << i << endl;
-        if (bit.to_ulong() & (1 << arr[i])){
-            cout << arr[i] << " ";
-            count += 1;
 
-        }
-        // cout << "** bit[i]: "<< bit[i] << endl;
-        // bit |= (bit << arr[i]);
-    }
-    // cout << "-----" << endl;
-    // // cout << "print bit: " << bit.to_string() << endl;
 
-    // for (ll i = 0; i < n; ++i){
-    //     cout << "** bit[i]: "<< bit[i] << endl;
-    //     if(bit[i]){
-    //         count += 1;
-    //     }
-    // }
-
-    if (result && count >= 3){
-        cout << "1" << endl;
-        cout << "subset sum of " << target_sum << " exists\n";
-    } else {
-        // cout << "0" << endl;
-        cout << "subset sum of " << target_sum << " does not exists\n";
-    }
-}
- 
 // function to store all the subset sums in bit vector
 void subsetSum(bitset<100> &bit, ll arr[], ll n){
     // set all the bits to 0
@@ -70,9 +35,10 @@ void subsetSum(bitset<100> &bit, ll arr[], ll n){
     for (ll i = 0; i < n; ++i) {
         cout << "arr[i]: " << arr[i] << endl;
         bit |= (bit << arr[i]);
-        // cout << "bit: " << bit.to_string() << endl;
+        cout << "bit: " << bit.to_string() << endl;
     }
 }
+
 
 int main(){
     ll n;
@@ -114,10 +80,10 @@ int main(){
             return 0;
         }
         // cout << "----- before sort -----\n";
-        // print_arr(arr, n);
+        // prll_arr(arr, n);
         sort(arr, arr + n);
         // cout << "----- after sort -----\n";
-        // print_arr(arr, n);
+        // prll_arr(arr, n);
 
         // invalid sequence
         if ((arr[0] >= 0) || (arr[n-1] <= 0)){
@@ -132,20 +98,56 @@ int main(){
 
         // ll target_sum = 0;
 
-        bitset<100> bit;
+        
+        // int x = 0;
+        // x |= (1 << 3);
+        // bitset<30> y(x);
+        // cout << "y: " << y.to_string() << endl;
+
+        // x |= (1 << 5);
+        // bitset<30> z(x);
+        // cout << "z: " << z.to_string() << endl;
+
+        // x |= (1 << 7);
+        // bitset<30> k(x);
+        // cout << "k: " << k.to_string() << endl;
+
+        // cout << "__builtin_popcount bit: " << __builtin_popcount(x) << endl;
+
+        // for (int i = 0; i < 31;++i){
+        //     if(x&(1<<i)){
+        //         cout << i << " ";
+        //     }
+        // }
+
+
+        bitset<30> bit;
+
+        bit.reset();
+        bit[0] = 1;
+        cout << "bit: " << bit.to_string() << endl;
+        bit |= (bit << 3);
+
+        cout << "bit: " << bit.to_string() << endl;
+        bit |= (bit << 5);
+        cout << "bit: " << bit.to_string() << endl;
  
-        subsetSum(bit, shift_arr, n);
+        for (int i = 0; i < 6;++i){
+            if(bit.to_ulong() & (1<<i)){
+                cout << i << " ";
+            }
+        }
+
+        // subsetSum(bit, shift_arr, n);
+
+
         // if (bit[n]){
         //     cout << "1" << endl;
         // } else {
         //     cout << "0" << endl;
         // }
-        check(-lower_bound, n, bit, shift_arr, upper_bound);
-        // if (solve(arr, n, target_sum, upper_bound, lower_bound)) {
-        //     cout << "1" << endl;
-        // } else {
-        //     cout << "0" << endl;
-        // }
+        // check(-lower_bound, n, bit, arr);
+
 
     }
 

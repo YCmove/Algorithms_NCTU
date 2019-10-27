@@ -117,6 +117,9 @@ int main(){
                 // A[i-2] -= min(A[1], A[i-2]);
 
         for (ll i = 2; i <= n; ++i) {
+            if (i&1){
+                // odd
+            }
             A[i] = max(A[i-1], A[i-2] + arr[i]);
         }
 

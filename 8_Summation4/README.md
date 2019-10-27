@@ -19,3 +19,8 @@
 
 # Hash
 - 會用到的C++資料結構
+
+
+# bitset
+- 還是逃不了overflow
+- bit |= (bit << i)
