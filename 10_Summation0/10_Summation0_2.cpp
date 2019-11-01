@@ -30,10 +30,10 @@ int main(){
         bool dp[n + 1][total_sum + 1];
 
         // init dp table
-        for (int j = 0; j <= total_sum + 1;++j){
+        for (int j = 0; j < total_sum + 1;++j){
             dp[0][j] = false;
         }
-        for (int i = 0; i <= n + 1;++i){
+        for (int i = 0; i < n + 1;++i){
             dp[i][0] = true;
         }
 
