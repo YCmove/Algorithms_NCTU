@@ -19,6 +19,7 @@ void print_vec(vector<long long> vec){
 
 
 long long query(long long *segtree, long long idx, long long start, long long end, long long j, long long k){
+    // j, k 為要求ㄧquery的範圍，在整個遞迴中都不會去改變它們
     // 踢掉不合法的query
 	if(j > end || start > k) return 0;
 
@@ -30,8 +31,10 @@ long long query(long long *segtree, long long idx, long long start, long long en
 
 	long long mid = (start + end) / 2;
     if (k <= mid){
+        // all in left subtree
 	    return query(segtree, 2 * idx, start, mid, j, k);
     } else if (j > mid){
+        // all in right subtree
 	    return query(segtree, 2 * idx + 1, mid + 1, end, j, k);
     }
 
@@ -111,13 +114,16 @@ int main(){
             cin >> num;
             all.push_back(num);
         }
+        // all array is [0, 1, 2, 3, 4, ..., n-1]
 
         // cout << "Start Processing: ";
         // print_vec(all);
         long long vec_size = all.size();
         long long * segtree = new long long[4 * vec_size + 1];
         long long idx = 1; //index of 1st node
+        // 拿到原始的array就建立線段樹
         create_tree(segtree, all, idx, 0, vec_size - 1);
+        
         // cout << "Printing Array" << endl;
         // print_array(segtree, 4 * vec_size + 1);
 

@@ -26,8 +26,7 @@ int main(){
             return 0;
         }
 
-
-        priority_queue<long long, std::vector<long long>, std::greater<long long> > q;
+        priority_queue<long long, vector<long long>, greater<long long> > q;
  
         for (long long i = 0 ; i < n; i++){
             long long num;

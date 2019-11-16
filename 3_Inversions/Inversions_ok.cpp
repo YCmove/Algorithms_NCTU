@@ -12,18 +12,6 @@ void print_vec(vector<long long> vec){
     cout << endl;
 }
 
-// void print_nest_vec(vector<vector<long long> > vec){
-//     long long size = vec.size();
-//     // cout << "size: " << size << endl;
-//     for (long long i = 0; i < size; i++){
-//         cout << "[ ";
-//         for (auto it = vec[i].begin(); it != vec[i].end(); it++){
-//             cout << *it << " ";
-//         }
-//         cout << "]";
-//     }
-// }
-
 void merge(vector<long long> & vec, long long begin, long long mid, long long end, long long & inv){
 
     // create 2 array
@@ -31,6 +19,7 @@ void merge(vector<long long> & vec, long long begin, long long mid, long long en
     long long n2 = end - mid;
     vector<long long> arr1;
     vector<long long> arr2;
+
     for (long long i = 0; i < n1; i++){
         arr1.push_back(vec[begin + i]);
     }
@@ -53,6 +42,7 @@ void merge(vector<long long> & vec, long long begin, long long mid, long long en
 
     // use k to re-assign origin vector
     for(long long k = begin; k <= end; k++) {
+        // i 走到底和 k 走到底
         if (i == n1) {
             // end of arr1
             vec[k] = arr2[j++];
@@ -61,6 +51,7 @@ void merge(vector<long long> & vec, long long begin, long long mid, long long en
             // end of arr2
             vec[k] = arr1[i++];
 
+        // i, k 都還沒有走到底
         // put smaller one into vec[k]
         } else if (arr1[i] <= arr2[j]) {
             // no inversion happen
@@ -118,8 +109,11 @@ int main(){
         }
 
         // print_vec(all);
-        
+
+
+        // merge_sort(vector<long long> & v, long long begin, long long end, long long & inv)
         merge_sort(all, 0, all.size()-1, inversions);
+
         // cout << "inversions: " << inversions << endl;
         // cout << "========" << endl;
 

@@ -1,3 +1,6 @@
+# Notes
+- Desired Values are stored in Segment Tree
+
 # Related Problem
 - [CodeForces](https://codeforces.com/blog/entry/22616)
 - [Github - 用Array實做range-max-query](https://github.com/amulyagaur/Segment-Tree/blob/master/range-max-query.cpp)
