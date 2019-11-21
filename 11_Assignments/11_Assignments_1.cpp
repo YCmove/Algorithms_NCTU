@@ -36,6 +36,7 @@ int main(){
 
     int max_points = 0;
     for (int i = 0; i < n;++i) {
+        cout << "points: " << arr[i].points << ", t: " << arr[i].t << ", ratio: " << arr[i].ratio << '\n';
         m -= arr[i].t;
         if (m < 0){
             // cout << max_points << '\n';
