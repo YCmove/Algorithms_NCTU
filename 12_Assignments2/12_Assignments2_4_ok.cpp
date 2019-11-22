@@ -1,5 +1,3 @@
-// 烏龜塔 weights and measures
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -30,12 +28,6 @@ bool comp(const pair<ll,ll> &a, const pair<ll,ll> &b){
     return a.ff < b.ff; 
 }
 
-bool comp2(const pair<ll,ll> &a, const pair<ll,ll> &b){ 
-    if (a.ss == b.ss) {
-        return a.ff < b.ff;
-    }
-    return a.ss < b.ss; 
-}
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -52,33 +44,35 @@ int main(){
         v.push_back(make_pair(due, t));
     }
     // 依照due來sort
-    sort(v.begin(), v.end());
+    sort(v.begin(), v.end(), comp);
     // print_vec(v);
-    // ll max_due = v[n-1].ff;
-    // ll max_t = v[n-1].ss;
+    
+    priority_queue<ll> pq;
 
-    // ll s[n] = {0};
-    // ll f[n] = {0}; // init all elems to 0
-    // ll ft = 0;
-    int j = 1;
+    // int j = 1;
     ll tmp = 0;
 
     for (int i = 0; i < n; ++i){
+        pq.push(v[i].ss);
         tmp += v[i].ss;
         // cout << "tmp: " << tmp << ", due: " << v[i].ff << ", t: " << v[i].ss << '\n';
         if (tmp > v[i].ff) {
+            tmp -= pq.top();
+            pq.pop();
+            // pq.push(v[i].ss);
             // cout << "No" << endl;
-            cout << j << '\n';
-            return 0;
+            // cout << j << '\n';
+            // return 0;
         }
-        j++;
+        // j++;
     }
-    
+
+    cout << pq.size() << '\n';
 
     // print_arr(s, n);
     // print_arr(f, n);
     // cout << "yes" << '\n';
-    cout << j << '\n';
+    // cout << j << '\n';
 
     return 0;
 }
