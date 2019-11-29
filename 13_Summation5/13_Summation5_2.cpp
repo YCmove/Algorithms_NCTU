@@ -2,29 +2,16 @@
 using namespace std;
 #define rep(i, n) for(int i=0; i < n; ++i)
 #define REP(i, n) for(int i=0; i <= n; ++i)
+typedef long long ll;
 
 int n;
 
-
-void Maximum_Sum_Subarray(int arr[],int n)		//Overall Time Complexity O(n^3)
-{
-	int ans = INT_MIN;		
-    int start_index;
-    int i;					// #include<climits>
-	for(int sub_array_size = 1;sub_array_size <= n; ++sub_array_size)		//O(n)
-	{
-		for(start_index = 0;start_index < n; ++start_index)				//O(n)
-		{
-			if(start_index+sub_array_size > n)	//Subarray exceeds array bounds
-				break;
-			int sum = 0;
-			for(i = start_index; i < (start_index+sub_array_size); i++)	//O(n)
-				sum+= arr[i];
-			ans = max(ans,sum);
-		}
-	}
-	// return ans;
-    cout << start_index-1 << " " << i-1 << endl;
+template<class T> void print_arr(T* arr, int n) {
+    for (int i = 0; i < n; ++i){
+        // cout << arr[i] << " ";
+        cout << arr[i] << " ";
+    }
+    cout << '\n';
 }
 
 int main(){
@@ -37,11 +24,30 @@ int main(){
         arr[i] = a;
     }
 
-    // int b = 0, sum=-1e10;
-    // int x = 0, y = 0;
+    ll m = -1e12-10;
+    ll mr = 0;
+    int low_m = 0, high_m = 0;
+    int low_r = 0;
 
-    Maximum_Sum_Subarray(arr, n);
+    print_arr(arr, n);
 
+    REP(i, n){
+        mr += arr[i];
+        if (mr > m){
+            cout << "--- mr > m ---" << '\n';
+            low_m = low_r;
+            high_m = i;
+            m = mr;
+        }else if(mr < 0){
+            cout << "--- mr < 0 ---" << '\n';
+            mr = 0;
+            low_r = i + 1;
+        }
+        cout << "m=" << m << ", mr=" << mr << ", low_r=" << low_r << ", low_m=" << low_m << 
+        ", high_m=" << high_m << '\n';
+    }
+
+    cout << low_m << " " << high_m << ", max="<< m << endl;
 
 
 

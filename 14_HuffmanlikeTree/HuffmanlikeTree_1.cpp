@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i, n) for (int i = 0; i < n; i++)
+#define lowbit(x) ((x)&(-x))
 int n;
 
 template<class T> void print_arr(T* arr, int n) {
@@ -12,7 +13,7 @@ template<class T> void print_arr(T* arr, int n) {
 }
 
 struct Leaf {
-    int symbol, weight;
+    int symbol, weight, width;
     bool operator<(const Leaf &o) const
     {
         return weight < o.weight;
@@ -31,6 +32,14 @@ struct comp
     }
 };
 
+// Smallest power of 2 in binary representation of number x
+// void min_width(int num){
+//     bitset<10> b(num); //convent number into bit array
+//     cout << num << " binary is " <<  b << endl;
+//     return;
+// }
+
+
 
 int main(){
     cin >> n;
@@ -42,8 +51,11 @@ int main(){
         cin >> w;
         Leaf l;
         l.symbol = i;
+        l.width = pow(2, i);
         l.weight = w;
         pq.push(l);
+        // min_width(w);
+        cout << "w = " << w << " / lowbit=" << lowbit(w) << endl;
         // tree[i].symbol = i;
         // tree[i].weight = w;
     }
@@ -51,10 +63,18 @@ int main(){
     // sort(tree, tree+n, comp);
     // print_arr(tree, n);
 
+    int d, r;
     while(!pq.empty()) {
-        Leaf value = pq.top();
+        Leaf node = pq.top();
+        cout << node.weight << " ";
+        d = lowbit(node.weight);
+        r = pow(2, d);
+
+        if ()
+
+
+
         pq.pop();
-        cout << value.weight << " ";
     }
 
 
