@@ -37,9 +37,7 @@ int main() {
         huff.pop();
 
         // cout << "num1=" << num1 << " / num2=" << num2 << '\n';
-        // In the problem with increase in distance of 1 unit,
-        // the overall weighted length will become twice, that's why multiplied by 2 here
-        huff.push(2*(num1+num2));
+        huff.push(2 * (num1 + num2));
     }
     cout << huff.top();
 }
