@@ -8,7 +8,8 @@ int n, m;
 vector<int> digraph[MAXN];
 int weight[MAXN];
 ll minimum = INT_MAX;
-ll cost = 0;
+// ll cost = 0;
+
 
 
 void init(int n){
@@ -28,7 +29,11 @@ int main(){
         cin >> a >>b >> k;
         digraph[a].push_back(b);
     }
-    init(n);
+
+    for(int i = 1; i <=n; ++i){
+        init(n);
+
+    }
     
 
 
