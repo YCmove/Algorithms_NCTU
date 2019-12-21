@@ -9,7 +9,7 @@ using namespace std;
 int const N = 2*1e3 + 2;
 int const M = 5*1e5 + 2;
 int const K = 1e9 + 2;
-int n, m, o_cost[N], cost[N];
+int n, m, cost[N];
 bool vis[N];
 vector<vector<pair<int, int> > > g; // pair 為 neighbor and weight
 priority_queue<pair<int, int> > q; // pair 為 weight 和 node
@@ -23,7 +23,10 @@ void Dijkstra(int src, int * cost, bool is_back) {
     
     while(!q.empty()) {
         v = q.top().second;
-        if (v == 0 && is_back) return;
+        if (v == 0 && is_back){
+            // cout << "reach 0" << '\n';
+            return;
+        };
         c = -q.top().first; // 重要，cost越負代表cost越大
         q.pop();
         
@@ -55,7 +58,7 @@ int main() {
     scanf("%d%d", &n, &m);
 
     // init
-    init(o_cost);
+    init(cost);
     // g.clear();
     // g.resize(n); // vector<vector<pair<int, int>>>的初始化
     // while(!q.empty()) q.pop(); // 清空queue
@@ -76,13 +79,16 @@ int main() {
     }
     
     ll total = 0;
-    init(o_cost);
+    // init(cost);
     // cout << " ---------- First Dijkstra(0) ---------- " << "\n";
-    Dijkstra(0, o_cost, false);
-    
+    Dijkstra(0, cost, false);
+    for (int i = 1 ; i<=n; ++i){
+        total += cost[i];
+    }
+
     for (int i = 1 ; i<=n; ++i){
         
-        total += o_cost[i];
+        // total += o_cost[i];
         // cout << "cost[" << i << "]=" << cost[i] << '\n';
 
         // cout << " ---------- Second Dijkstra(0) ---------- " << "\n";
