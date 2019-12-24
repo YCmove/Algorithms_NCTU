@@ -8,6 +8,7 @@ typedef long long ll;
 
 int n, m, q;
 const int MAXN = 500+1;
+const int MAXK = 1e8;
 // n: number of intersections
 // m: the number of roads
 // q: the number of the Demon Slayers 
@@ -37,16 +38,16 @@ void dijkstra(int node){
         for (int j = 0; j < (int)digraph[p.ss].size(); ++j){
             PI neighbor = digraph[p.ss][j];
             cout << "Loop over neighbors: (" << neighbor.ff << ", " << neighbor.ss << ")\n";
-            cout << "dist[neighbor.ss]=" << dist[neighbor.ss] << ", p.ff=" << p.ff << ", neighbor.ff=" << neighbor.ff << '\n';
+            cout << "origin dist[neighbor.ss]=" << dist[neighbor.ss] << ", p.ff=" << p.ff << ", neighbor.ff=" << neighbor.ff << '\n';
             if (dist[neighbor.ss] < p.ff + neighbor.ff){
-                cout << "Nothing here" << '\n';
-                continue;
+                cout << "Don't update" << '\n';
             } else {
-                cout << "Update distance" << '\n';
                 // update the dist to smallar one
-                dist[neighbor.ff] = p.ff + neighbor.ff;
+                dist[neighbor.ss] = p.ff + neighbor.ff;
+                cout << "Update distance, dist[neighbor.ss]=" << dist[neighbor.ss] << ", p.ff=" << p.ff << ", neighbor.ff=" << neighbor.ff << '\n';
                 if (!visited[neighbor.ss]){
                     // Relax Operation
+                    cout << "Update distance - push to queue" << '\n';
                     pq.push(mp(neighbor.ff, neighbor.ss));
                 }
             }
@@ -60,7 +61,7 @@ void dijkstra(int node){
 void init(int start_node){
     for (int i=0; i <= n;++i){
         visited[i] = false;
-        dist[i] = INT_MAX;
+        dist[i] = MAXK;
     }
     dist[start_node] = 0;
 }
@@ -81,21 +82,23 @@ int main(){
     for(int i=0; i< q; ++i){
         cin >> a >> b;
         init(a);
-        dijkstra(a);
         cout << "****** dijkstra(a) ******" << '\n';
-        cout << "dist[a]=" << dist[a] << ", dist[b]=" << dist[b] << '\n';
-        cout << "************" << '\n';
+        dijkstra(a);
+        ll costb = dist[b];
+        cout << "**** dist[a]=" << dist[a] << ", dist[b]=" << dist[b] << " ****" << '\n';
         init(b);
-        dijkstra(b);
         cout << "****** dijkstra(b) ******" << '\n';
-        cout << "dist[a]=" << dist[a] << ", dist[b]=" << dist[b] << '\n';
-        cout << "************" << '\n';
-        ll min_cost = (dist[a] < dist[b] ? dist[a] : dist[b]);
+        dijkstra(b);
+        ll costa = dist[a];
+        cout << "**** dist[a]=" << dist[a] << ", dist[b]=" << dist[b] << " ****"<< '\n';
+        // ll min_cost = (dist[a] < dist[b] ? dist[a] : dist[b]);
+        ll min_cost = (costb < costa) ? costb : costa;
 
-        if (min_cost < INT_MAX){
-            cout << min_cost << '\n';
-        } else {
+        if (min_cost == MAXK){
             cout << "-1" << '\n';
+        } else {
+            cout << " ########## ANS ##########: ";
+            cout << min_cost << "\n\n";
         }
         
     }
