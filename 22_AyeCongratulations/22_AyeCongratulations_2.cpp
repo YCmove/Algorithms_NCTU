@@ -13,7 +13,7 @@ struct edge {
 
 vector<edge> G[MAXN];
 // cost: prop的cost
-int cost[MAXN], level[MAXN], iter[MAXN];
+int cost[MAXN], level[MAXN], iter[MAXN], vis[MAXN];
 
 void add_edge(int from, int to, int cap) {
     G[from].push_back((edge){to, cap, (int) G[to].size()});
@@ -24,24 +24,27 @@ void bfs(int s) {
     memset(level, -1, sizeof(level));
     queue<int> q;
     level[s] = 0;
+    vis[s] = true;
     q.push(s);
     while (!q.empty()) {
         int u = q.front();
         q.pop();
         for (auto e : G[u]) {
-            if (e.cap > 0 && level[e.to] < 0) {
+            if (!vis[e.to] && e.cap > 0 && level[e.to] < 0) {
                 level[e.to] = level[u] + 1;
                 q.push(e.to);
+                vis[e.to] = true;
             }
         }
     }
+    // return vis[t];
 }
 
 int dfs(int u, int t, int f) {
     if (u == t || f == 0) {
         return f;
     }
-    int d;
+    int d = 0;
     for (int i = iter[u]; i < (int) G[u].size(); i++) {
         edge &e = G[u][i];
         if (e.cap > 0 && level[u] < level[e.to] && (d = dfs(e.to, t, min(f, e.cap))) > 0) {
@@ -62,11 +65,13 @@ int dfs(int u, int t, int f) {
         //     }
         // }
     }
+    // return 0;
     return 0;
 }
 
 int max_flow(int s, int t) {
     int flow = 0;
+    // while (true) {
     while (true) {
         bfs(s);
         if (level[t] < 0) {
@@ -78,6 +83,13 @@ int max_flow(int s, int t) {
             flow += f;
         }
     }
+    // int flow=0;
+    // while(bfs())
+    // {
+    //     memset(iter, 0, sizeof(iter));
+    //     flow += dfs(s, t,INF);
+    // }
+    return flow;
 }
 
 
@@ -87,6 +99,9 @@ int main(){
     cin >> n >> m;
     s = 0;
     t = 2*(n + m + 1);
+    for (int i = 0; i <=n; ++i){
+        vis[i] = false;
+    }
     // cout << "n=" << n << ", m=" << m << '\n';
     int p;
     for(int i = 1; i <= n; ++i){

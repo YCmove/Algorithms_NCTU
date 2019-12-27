@@ -14,24 +14,29 @@ struct edge {
 vector<edge> G[MAXN];
 // cost: prop的cost
 int cost[MAXN], level[MAXN], iter[MAXN];
+bool vis[MAXN];
 
 void add_edge(int from, int to, int cap) {
-    G[from].push_back((edge){to, cap, (int) G[to].size()});
-    G[to].push_back((edge){from, 0, (int) G[from].size() - 1});
+    G[from].push_back((edge){to, cap, (int)G[to].size()});
+    G[to].push_back((edge){from, 0, (int)G[from].size() - 1});
 }
 
 void bfs(int s) {
     memset(level, -1, sizeof(level));
     queue<int> q;
     level[s] = 0;
+    vis[s] = true;
     q.push(s);
     while (!q.empty()) {
         int u = q.front();
         q.pop();
         for (auto e : G[u]) {
-            if (e.cap > 0 && level[e.to] < 0) {
+            if (e.cap > 0 && level[e.to] == -1) {
+            // if (e.cap > 0 && level[e.to] < 0) {
+            // if (!vis[e.to] && e.cap > 0 && level[e.to] < 0) {
                 level[e.to] = level[u] + 1;
                 q.push(e.to);
+                vis[e.to] = true;
             }
         }
     }
@@ -41,6 +46,7 @@ int dfs(int u, int t, int f) {
     if (u == t || f == 0) {
         return f;
     }
+    int fl = 0;
     int d;
     for (int i = iter[u]; i < (int) G[u].size(); i++) {
         edge &e = G[u][i];
@@ -48,9 +54,13 @@ int dfs(int u, int t, int f) {
             // int d = dfs(e.to, t, min(f, e.cap));
             // if (d > 0) {
             e.cap -= d;
+            fl += d;
             G[e.to][e.rev].cap += d;
+            G[e.rev][e.to].cap -= d;
             if(!e.cap) return d;
-            return d;
+            // if(!e.cap) return d;
+            // return d;
+            // return d;
             // }
         }
         // if (e.cap > 0 && level[u] < level[e.to]) {
@@ -62,7 +72,7 @@ int dfs(int u, int t, int f) {
         //     }
         // }
     }
-    return 0;
+    return fl;
 }
 
 int max_flow(int s, int t) {
@@ -82,6 +92,8 @@ int max_flow(int s, int t) {
 
 
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
     // n: number of ideas
     // m: number of props
     cin >> n >> m;
@@ -89,6 +101,9 @@ int main(){
     t = 2*(n + m + 1);
     // cout << "n=" << n << ", m=" << m << '\n';
     int p;
+    for(int i = 0; i <= n; ++i){
+        vis[i] = false;
+    }
     for(int i = 1; i <= n; ++i){
         // number of ideas, the number of props
         cin >> p;

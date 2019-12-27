@@ -3,7 +3,7 @@ using namespace std;
 #define INF 0x3f3f3f3f
 
 const int MAXN = 300+1;
-const int MAXM = 90001;
+const int MAXm = 90001;
 
 int n, m;
 int s, t;
