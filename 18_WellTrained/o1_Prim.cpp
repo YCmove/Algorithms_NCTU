@@ -28,10 +28,10 @@ long long prim(int x) {
         // Checking for cycle
         if (marked[x] == true)
             continue;
+        marked[x] = true;
 
         minimumCost += p.first; // 一開始是起點, weight = 0
         cout << "minimumCost = " << minimumCost << ", p = " << p.first << '\n';
-        marked[x] = true;
 
         // for loop 結束完才會回到while loop
         // Prim 會去 loop 當前點的鄰居

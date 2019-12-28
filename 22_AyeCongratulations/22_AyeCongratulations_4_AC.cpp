@@ -63,7 +63,7 @@ int dfs(int v, int t, int f) {
         if (level[cur] == level[v]+1 && g[i].flow < g[i].cap){
             int z=0;
             if((z = dfs(cur, t, min(f, g[i].cap - g[i].flow))) > 0){
-                g[i].flow = z;
+                g[i].flow += z;
                 g[i^1].flow -= z;
                 return z;
             }
