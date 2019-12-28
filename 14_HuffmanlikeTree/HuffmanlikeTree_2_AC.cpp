@@ -25,6 +25,7 @@ int main() {
         cin >> x;
         nums.push_back(x);
     }
+    
     priority_queue<ll , vector<ll>, greater<ll> > huff(nums.begin() , nums.end());
    
     // print_queue(huff);

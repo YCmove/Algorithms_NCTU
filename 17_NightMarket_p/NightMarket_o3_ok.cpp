@@ -20,7 +20,8 @@ int bfs(int s, int &dm)
     q.push(s);
     while(!q.empty())
     {
-        u = q.front(); q.pop();
+        u = q.front();
+        q.pop();
 
         for(int i = 0; i < (int)edge[u].size(); i++)
         {

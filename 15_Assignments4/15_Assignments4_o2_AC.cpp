@@ -31,15 +31,17 @@ int main() {
         maxx = max(maxx, hh[i].jz);
     }
 
+    // 依照jz(due time)先sort一遍
     sort(hh + 1, hh + n + 1, comp);
 
+    // 從大到小開始for loop, 從default預設值最大開始
     for (long long i = maxx; i >= 1; i--) {
-        while (hh[now].jz == i) {
+        while (hh[now].jz == i) { // hh[1]是due time最大的
             q.push(hh[now]);
             now++;
         }
         if (!q.empty()) {
-            ans += q.top().nl;
+            ans += q.top().nl; // nl: points
             q.pop();
         }
     }

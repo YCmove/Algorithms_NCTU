@@ -34,10 +34,11 @@ long long prim(int x) {
         marked[x] = true;
 
         // for loop 結束完才會回到while loop
+        // Prim 會去 loop 當前點的鄰居
         for (int i = 0; i < (int)adj[x].size(); ++i) {
             y = adj[x][i].second; // x的第i個鄰居
             if (marked[y] == false)
-                Q.push(adj[x][i]);
+                Q.push(adj[x][i]); // adj[x][i]是一個PI
                 cout << "push y=" << y << '\n';
         }
     }
@@ -57,10 +58,13 @@ int main() {
     }
     // Selecting 1 as the starting node
 
+    // 初始化marked
+
     int counter = 0;
+    // 把所有node開始for loop (等於隨機選擇起點找component)
     for (int i = 0; i < nodes; ++i) {
         if (!marked[i]){
-            counter ++;
+            counter ++; // ssp個數
             minimumCost += prim(i);
         }
     }
